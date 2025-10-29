@@ -1,12 +1,13 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import type { User } from "./UserModal";
+import '../App.css'
 
 const initialUsers: User[] = [];
 
 export const UserCrud: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [editingUser, setEditingUser] = useState<User | null>(null);
-  const [formData, setFormData] = useState({ name: "", email: "", Age: 0 });
+  const [formData, setFormData] = useState({ Name: "", Email: "", Age: 0 });
 
   useEffect(() => {
     // Load initial users (could be replaced with API call)
@@ -20,17 +21,17 @@ export const UserCrud: React.FC = () => {
   const handleAddUser = () => {
     const newUser: User = {
       Id: users.length ? Math.max(...users.map(u => u.Id)) + 1 : 1,
-      Name: formData.name,
-      Email: formData.email,
+      Name: formData.Name,
+      Email: formData.Email,
       Age: formData.Age
     };
     setUsers([...users, newUser]);
-    setFormData({ name: "", email: "", Age: 0 });
+    setFormData({ Name: "", Email: "", Age: 0 });
   };
 
   const handleEditUser = (user: User) => {
     setEditingUser(user);
-    setFormData({ name: user.Name, email: user.Email, Age: user.Age });
+    setFormData({ Name: user.Name, Email: user.Email, Age: user.Age });
   };
 
   const handleUpdateUser = () => {
@@ -38,7 +39,7 @@ export const UserCrud: React.FC = () => {
     const updated = users.map(u => u.Id === editingUser.Id ? { ...u, ...formData } : u);
     setUsers(updated);
     setEditingUser(null);
-    setFormData({ name: "", email: "", Age: 0 });
+    setFormData({ Name: "", Email: "", Age: 0 });
   };
 
   const handleDeleteUser = (id: number) => {
@@ -46,20 +47,16 @@ export const UserCrud: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>User CRUD</h2>
+    <div className="card">
+      <h2>Users</h2>
+      <input
+        value={formData.Name}
+        name="Name"
+       type="text" onChange={handleInputChange} placeholder="patientName" className="input input-md" />
       <input 
-        name="name" 
-        value={formData.name}
-        onChange={handleInputChange}
-        placeholder="Name"
-      />
-      <input 
-        name="email" 
-        value={formData.email}
-        onChange={handleInputChange}
-        placeholder="Email"
-      />
+        value={formData.Email}
+        name="Email"
+       type="text" onChange={handleInputChange} placeholder="Email" className="input input-md" />
       {editingUser ? (
         <button onClick={handleUpdateUser}>Update User</button>
       ) : (
