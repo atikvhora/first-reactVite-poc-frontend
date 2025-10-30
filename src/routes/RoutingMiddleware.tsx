@@ -13,10 +13,10 @@ export const RoutingMiddleware : React.FC = () => {
         <React.Fragment>
             <AppHeader />
             <Routes>
-                <Route path="/" element={<PatientList Patients={[]} />}></Route>
+                <Route path="/" element={<PatientList />}></Route>
                 <Route path={Patient_Add} element={<Patient />}></Route>
                 <Route path={Patient_Address_Add} element={<Address />}></Route>
-                <Route path={Patient_List} element={<PatientList Patients={[]} />}></Route>
+                <Route path={Patient_List} element={<PatientList />}></Route>
             </Routes>
             <Footer />
         </React.Fragment>

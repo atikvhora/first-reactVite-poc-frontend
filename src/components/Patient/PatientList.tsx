@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { GetPatientData } from "../../services/PatientService";
+import type { PatientData } from "../../services/PatientService";
 
-interface Props {
-    Patients: string[]
-}
-
-const PatientList : React.FC<Props> = ({ Patients }) => {
+const PatientList = () => {
+    const [patientData, setPatientList] = useState<PatientData[]>([]);
+    useEffect(() => {
+        GetPatientData().then((data) => 
+        {
+            setPatientList(data);
+        });
+    }, []);
+    console.log("patiendata", patientData);
     return (
         <React.Fragment>
             <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
@@ -21,13 +27,14 @@ const PatientList : React.FC<Props> = ({ Patients }) => {
                     </thead>
                     <tbody>
                     <React.Fragment>
-                        <tr>
-                            <td>testtest</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Male</td>
-                            <td>849949</td>
-                            <td>a, test</td>
-                        </tr>
+                        {patientData.map((item) => 
+                            <tr>
+                                <td>{item.name}</td>
+                                <td>{item.email}</td>
+                                <td>{item.gender}</td>
+                                <td>{item.phone}</td>
+                            </tr>
+                        )}
                     </React.Fragment>
                     </tbody>
                 </table>

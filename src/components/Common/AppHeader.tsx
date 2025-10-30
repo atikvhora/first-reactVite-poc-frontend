@@ -41,7 +41,7 @@ const AppHeader = () => {
                         Add Patient
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to={Patient_Address_Add}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ const AppHeader = () => {
                         </svg>
                         Add Address
                         </Link>
-                    </li>
+                    </li> */}
                     </ul>
             </div>
         </React.Fragment>

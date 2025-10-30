@@ -6,7 +6,11 @@ export interface PatientData {
   username: string;
   email: string;
   gender: string;
-  phone: number;
+  phone: string;
+  address1: string;
+  city: string;
+  pincode: string;
+  country: string;
 }
 
 const apiClient = axios.create({
@@ -17,13 +21,13 @@ const apiClient = axios.create({
 });
 
 // Add Patient Data
-export async function AddPatient(): Promise<PatientData[]> {
-  const response: AxiosResponse<PatientData[]> = await apiClient.post('/patient/addPatient?_limit=5');
+export async function AddPatient(patientData = {}): Promise<PatientData> {
+  const response: AxiosResponse<PatientData> = await apiClient.post('/patients/addPatient', patientData);
   return response.data;
 }
 
 // Get Patient and its Address
 export async function GetPatientData(): Promise<PatientData[]> {
-  const response: AxiosResponse<PatientData[]> = await apiClient.post('/patient/getPatientData?_limit=5');
+  const response: AxiosResponse<PatientData[]> = await apiClient.get('/patients');
   return response.data;
 }

@@ -3,11 +3,15 @@ import { AddPatient } from "../../services/PatientService";
 
 const Patient = () => {
    const [formData, setFormData] = useState({
-    patientName: "",
+    name: "",
     username: "",
     email: "",
     gender: "",
     phone: "",
+    address1: "",
+    city: "",
+    pincode: "",
+    country: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -16,12 +20,11 @@ const Patient = () => {
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("patient submit", Patient)
-    AddPatient()
+    console.log("patient submit", formData)
+    AddPatient(formData)
     .then(Patient)
     .catch((err) => err.message)
     .finally(() => false);
-    alert(JSON.stringify(formData, null, 2));
   };
 
   return (
@@ -34,14 +37,13 @@ const Patient = () => {
         </label>
         <input
             type="text"
-            name="patientName"
+            name="name"
             placeholder="Enter patient name"
             className="input input-bordered w-full mb-4"
-            value={formData.patientName}
+            value={formData.name}
             onChange={handleChange}
             required
         />
-
         <label className="label">
             <span className="label-text">Username</span>
         </label>
@@ -54,7 +56,6 @@ const Patient = () => {
             onChange={handleChange}
             required
         />
-
         <label className="label">
             <span className="label-text">Email</span>
         </label>
@@ -67,7 +68,6 @@ const Patient = () => {
             onChange={handleChange}
             required
         />
-
         <label className="label">
             <span className="label-text">Gender</span>
         </label>
@@ -96,7 +96,55 @@ const Patient = () => {
             onChange={handleChange}
             required
         />
+        <label className="label">
+            <span className="label-text">Address</span>
+        </label>
+        <input
+            type="text"
+            name="address1"
+            placeholder="Enter address"
+            className="input input-bordered w-full mb-4"
+            value={formData.address1}
+            onChange={handleChange}
+            required
+        />
+        <label className="label">
+            <span className="label-text">City</span>
+        </label>
+        <input
+            type="text"
+            name="city"
+            placeholder="Enter city"
+            className="input input-bordered w-full mb-4"
+            value={formData.city}
+            onChange={handleChange}
+            required
+        />
+        <label className="label">
+            <span className="label-text">Pin Code</span>
+        </label>
+        <input
+            type="text"
+            name="pincode"
+            placeholder="Enter pin code"
+            className="input input-bordered w-full mb-4"
+            value={formData.pincode}
+            onChange={handleChange}
+            required
+        />
 
+        <label className="label">
+            <span className="label-text">Country</span>
+        </label>
+        <input
+            type="text"
+            name="country"
+            placeholder="Enter country"
+            className="input input-bordered w-full mb-6"
+            value={formData.country}
+            onChange={handleChange}
+            required
+        />
         <button type="submit" className="btn btn-primary w-full">
             Submit
         </button>

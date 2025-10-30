@@ -3,9 +3,9 @@ import React, { useState } from "react";
 const Address = () => {
     const [form, setForm] = useState({
     patient: "",
-    address: "",
+    address1: "",
     city: "",
-    pinCode: "",
+    pincode: "",
     country: "",
   });
 
@@ -25,34 +25,15 @@ const Address = () => {
         onSubmit={handleSubmit}
         >
         <h2 className="text-2xl font-bold mb-6 text-center">Add Patient Address</h2>
-
-        <label className="label">
-            <span className="label-text">Select Patient</span>
-        </label>
-        <select
-            name="patient"
-            className="select select-bordered w-full mb-4"
-            value={form.patient}
-            onChange={handleChange}
-            required
-        >
-            <option value="" disabled>
-            Choose a patient
-            </option>
-            <option value="patient1">Patient 1</option>
-            <option value="patient2">Patient 2</option>
-            <option value="patient3">Patient 3</option>
-        </select>
-
         <label className="label">
             <span className="label-text">Address</span>
         </label>
         <input
             type="text"
-            name="address"
+            name="address1"
             placeholder="Enter address"
             className="input input-bordered w-full mb-4"
-            value={form.address}
+            value={form.address1}
             onChange={handleChange}
             required
         />
@@ -75,10 +56,10 @@ const Address = () => {
         </label>
         <input
             type="text"
-            name="pinCode"
+            name="pincode"
             placeholder="Enter pin code"
             className="input input-bordered w-full mb-4"
-            value={form.pinCode}
+            value={form.pincode}
             onChange={handleChange}
             required
         />
