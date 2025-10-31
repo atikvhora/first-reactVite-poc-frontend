@@ -14,7 +14,7 @@ export interface PatientData {
 }
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://jsw1rv1g-3000.inc1.devtunnels.ms/',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -22,12 +22,18 @@ const apiClient = axios.create({
 
 // Add Patient Data
 export async function AddPatient(patientData = {}): Promise<PatientData> {
-  const response: AxiosResponse<PatientData> = await apiClient.post('/patients/addPatient', patientData);
+  const response: AxiosResponse<PatientData> = await apiClient.post('/patients/AddPatient', patientData);
   return response.data;
 }
 
 // Get Patient and its Address
 export async function GetPatientData(): Promise<PatientData[]> {
-  const response: AxiosResponse<PatientData[]> = await apiClient.get('/patients');
+  const response: AxiosResponse<PatientData[]> = await apiClient.get('/patients/GetAllPatient');
+  return response.data;
+}
+
+// Delete Patient
+export async function DeletePatient(id : number): Promise<PatientData> {
+  const response: AxiosResponse<PatientData> = await apiClient.delete('/patients/DeletePatient/' + id);
   return response.data;
 }

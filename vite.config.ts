@@ -5,6 +5,14 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',   // allows LAN/mobile access
+    port: 5173,        // default dev port
+  },
+  preview: {
+    host: '0.0.0.0',   // allows LAN/mobile access during preview
+    port: 4173,        // default preview port
+  },
   plugins: [react(),
     tailwindcss(),
     VitePWA({

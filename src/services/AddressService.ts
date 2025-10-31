@@ -10,7 +10,7 @@ export interface PatientAddressData {
 }
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://jsw1rv1g-3000.inc1.devtunnels.ms/',
   headers: {
     'Content-Type': 'application/json',
   },
