@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AddPatient } from "../../services/PatientService";
 import Toaster from '../Common/Toaster';
 import { useNavigate } from 'react-router-dom';
-import { Patient_List } from '../CommonEnum';
+import Enums from '../CommonEnum';
 
 const Patient = () => {
    const [formData, setFormData] = useState({
@@ -30,7 +30,7 @@ const Patient = () => {
             if(response.id > 0) {
                 setShowToast(true);
                 setTimeout(() => setShowToast(false), 3000);
-                navigate(Patient_List);
+                navigate(Enums.Patient_Enum.Patient_List);
             }
         })
         .catch((err) => err.message)

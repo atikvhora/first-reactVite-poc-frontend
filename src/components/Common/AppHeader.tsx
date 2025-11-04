@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom";
-import { Patient_Address_Add, Patient_Add } from "../CommonEnum";
+import Enums from "../CommonEnum";
 
 const AppHeader = () => {
     return (
@@ -25,7 +25,7 @@ const AppHeader = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to={Patient_Add}>
+                        <Link to={Enums.Patient_Enum.Patient_Add}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"
