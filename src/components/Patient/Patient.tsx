@@ -44,58 +44,45 @@ const Patient = () => {
 
     return (
         <React.Fragment>
+            <div className="max-h-lg mx-auto p-6 bg-base-200 rounded-lg shadow-lg">
             {Toast.Message != '' && 
                 <Toaster Message={Toast.Message} Type={Toast.Type} />
             }
             <form className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md" onSubmit={handleSubmit}>
             <h2 className="text-2xl font-bold mb-6 text-center">Add Patient</h2>
-
-            <label className="label">
-                <span className="label-text">Patient Name</span>
-            </label>
             <input
                 type="text"
                 name="name"
                 placeholder="Enter patient name"
-                className="input input-bordered w-full mb-4"
+                className="input border w-full mb-4 p-2"
                 value={formData.name}
                 onChange={handleChange}
                 required
             />
-            <label className="label">
-                <span className="label-text">Username</span>
-            </label>
             <input
                 type="text"
                 name="username"
                 placeholder="Enter username"
-                className="input input-bordered w-full mb-4"
+                className="input border w-full mb-4 p-2"
                 value={formData.username}
                 onChange={handleChange}
-                pattern="[A-Za-z][A-Za-z0-9\-]*" 
                 min="3"
                 max="30"
                 title="Only letters, numbers or dash"
                 required
             />
-            <label className="label">
-                <span className="label-text">Email</span>
-            </label>
             <input
                 type="email"
                 name="email"
                 placeholder="Enter email"
-                className="input input-bordered w-full mb-4"
+                className="input border w-full mb-4 p-2"
                 value={formData.email}
                 onChange={handleChange}
                 required
             />
-            <label className="label">
-                <span className="label-text">Gender</span>
-            </label>
             <select
                 name="gender"
-                className="select select-bordered w-full mb-4"
+                className="select border w-full mb-4 p-2"
                 value={formData.gender}
                 onChange={handleChange}
                 required
@@ -105,72 +92,56 @@ const Patient = () => {
                 <option value="female">Female</option>
                 <option value="other">Other</option>
             </select>
-
-            <label className="label">
-                <span className="label-text">Phone</span>
-            </label>
             <input
                 type="tel"
                 name="phone"
                 placeholder="Enter phone number"
-                className="input input-bordered w-full mb-6"
+                className="input border w-full mb-4 p-2"
                 value={formData.phone}
                 onChange={handleChange}
                 required
             />
-            <label className="label">
-                <span className="label-text">Address</span>
-            </label>
             <input
                 type="text"
                 name="address1"
                 placeholder="Enter address"
-                className="input input-bordered w-full mb-4"
+                className="input border w-full mb-4 p-2"
                 value={formData.address1}
                 onChange={handleChange}
                 required
             />
-            <label className="label">
-                <span className="label-text">City</span>
-            </label>
             <input
                 type="text"
                 name="city"
                 placeholder="Enter city"
-                className="input input-bordered w-full mb-4"
+                className="input border w-full mb-4 p-2"
                 value={formData.city}
                 onChange={handleChange}
                 required
             />
-            <label className="label">
-                <span className="label-text">Pin Code</span>
-            </label>
             <input
                 type="text"
                 name="pincode"
                 placeholder="Enter pin code"
-                className="input input-bordered w-full mb-4"
+                className="input border w-full mb-4 p-2"
                 value={formData.pincode}
                 onChange={handleChange}
                 required
             />
-
-            <label className="label">
-                <span className="label-text">Country</span>
-            </label>
             <input
                 type="text"
                 name="country"
                 placeholder="Enter country"
-                className="input input-bordered w-full mb-6"
+                className="input border w-full mb-4 p-2"
                 value={formData.country}
                 onChange={handleChange}
                 required
             />
-            <button type="submit" className="btn btn-primary w-full">
+            <button type="submit" className="btn btn-soft btn-primary w-full">
                 Submit
             </button>
             </form>
+            </div>
         </React.Fragment>
     );
 };

@@ -7,10 +7,18 @@ export interface PatientData {
   email: string;
   gender: string;
   phone: string;
-  address1: string;
+  address: AddressData;
   city: string;
   pincode: string;
   country: string;
+}
+export interface AddressData {
+  id?: number;
+  patientId: number;
+  address1: string;
+  city?: string;
+  pincode?: string;
+  country?: string;
 }
 
 const apiClient = axios.create({
