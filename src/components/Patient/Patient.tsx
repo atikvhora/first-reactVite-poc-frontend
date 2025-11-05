@@ -16,7 +16,12 @@ const Patient = () => {
     pincode: "",
     country: "",
   });
-    const [showToast, setShowToast] = useState(false);
+
+  interface toastObj {
+    Type : string,
+    Message: string
+  }
+    const [Toast, setShowToast] = useState<toastObj>({ Type : "", Message : ""});
     const navigate = useNavigate();
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,9 +33,9 @@ const Patient = () => {
         AddPatient(formData)
         .then((response) => {
             if(response.id > 0) {
-                setShowToast(true);
-                setTimeout(() => setShowToast(false), 3000);
-                navigate(Enums.Patient_Enum.Patient_List);
+                setShowToast( {Message : Enums.CommonMessage_Enum.Patient_Added_Message, Type: Enums.StatusTypes.Success });
+                setTimeout(() => setShowToast({Message : "", Type: "" }), 3000);
+                // navigate(Enums.Patient_Enum.Patient_List);
             }
         })
         .catch((err) => err.message)
@@ -39,8 +44,8 @@ const Patient = () => {
 
     return (
         <React.Fragment>
-            {showToast && 
-                <Toaster Message='Patient Added Successfully' Type='success' />
+            {Toast.Message != '' && 
+                <Toaster Message={Toast.Message} Type={Toast.Type} />
             }
             <form className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md" onSubmit={handleSubmit}>
             <h2 className="text-2xl font-bold mb-6 text-center">Add Patient</h2>
@@ -67,6 +72,10 @@ const Patient = () => {
                 className="input input-bordered w-full mb-4"
                 value={formData.username}
                 onChange={handleChange}
+                pattern="[A-Za-z][A-Za-z0-9\-]*" 
+                min="3"
+                max="30"
+                title="Only letters, numbers or dash"
                 required
             />
             <label className="label">
