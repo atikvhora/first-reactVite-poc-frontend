@@ -22,7 +22,6 @@ const Patient = () => {
     Message: string
   }
     const [Toast, setShowToast] = useState<toastObj>({ Type : "", Message : ""});
-    const navigate = useNavigate();
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -137,7 +136,7 @@ const Patient = () => {
                 onChange={handleChange}
                 required
             />
-            <button type="submit" className="btn btn-soft btn-primary w-full">
+            <button type="submit" className="bg-blue-500 hover:bg-purple-600 text-white font-semibold py-2 rounded-lg transition-all duration-200 w-full">
                 Submit
             </button>
             </form>

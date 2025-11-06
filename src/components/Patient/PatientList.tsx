@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { GetPatientData } from "../../services/PatientService";
 import type { PatientData } from "../../services/PatientService";
 import withLoader from "../Common/Loader/LoaderHOC";
 import Loader from "../Common/Loader/Loader";
 import PatientDeleteItem from "./PatientDeleteItem";
+import { Link } from "react-router-dom";
+import Enums from "../CommonEnum";
 
 const WithLoader = withLoader(Loader);
 
@@ -25,13 +27,19 @@ const PatientList = () => {
     console.log("patiendata", patientData);
     return (
         <React.Fragment>
-            <div className="max-h-64 overflow-y-auto p-4 rounded-box shadow bg-base-100">
+                    {/* Add Button */}
+      <div className="mb-4 flex-end text-right w-full">
+        <Link to={Enums.Patient_Enum.Patient_Add} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg transition-all duration-200 p-5">+ Add Patient</Link>
+      </div>
             {/* <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"> */}
+            {/* <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"> */}
+            <div className="overflow-x-auto rounded-box border border-base-content/10 bg-base-100 p-4">
                 {loading &&
                     <WithLoader loading={loading} />
                 }
                 {!loading &&
-                    <table className="table">
+                <Fragment>
+                    <table className="table table-zebra table-bordered w-full">
                         {/* head */}
                         <thead>
                             <tr>
@@ -62,6 +70,7 @@ const PatientList = () => {
                             </React.Fragment>
                         </tbody>
                     </table>
+                </Fragment>
                 }
             </div>
         </React.Fragment>
