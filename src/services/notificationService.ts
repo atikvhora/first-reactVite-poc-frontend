@@ -10,7 +10,8 @@ export interface PushNotification {
         endpoint: string,
     },
     payload: {
-        
+        title: string,
+        body: string
     }
 }
 
@@ -26,7 +27,7 @@ export async function Subscribe(Payload = {}): Promise<string> {
   return response.data;
 }
 
-export async function SendPushNotification(Payload = {}): Promise<string> {
-  const response: AxiosResponse<string> = await apiClient.post('/notifications/send', Payload);
+export async function SendPushNotification(PushNotification = {}): Promise<string> {
+  const response: AxiosResponse<string> = await apiClient.post('/notifications/send', PushNotification);
   return response.data;
 }

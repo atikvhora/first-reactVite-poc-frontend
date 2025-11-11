@@ -15,7 +15,7 @@ export const SideMenu = () => {
             <label htmlFor="side-menu" className="drawer-overlay"></label>
             <aside className="menu p-4 w-64 min-h-full bg-base-200 text-base-content">
                 <ul>
-                <li><Link to={Enums.Patient_Enum.Patient_List} className="font-semibold">
+                <li><Link to={Enums.Common_Routes.home} className="font-semibold">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"
@@ -23,9 +23,9 @@ export const SideMenu = () => {
                         viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                     Dashboard

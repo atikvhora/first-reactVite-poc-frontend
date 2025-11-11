@@ -4,7 +4,7 @@ import type { PatientData } from "../../services/PatientService";
 import withLoader from "../Common/Loader/LoaderHOC";
 import Loader from "../Common/Loader/Loader";
 import PatientDeleteItem from "./PatientDeleteItem";
-import { Link } from "react-router-dom";
+import { generatePath, Link } from "react-router-dom";
 import Enums from "../CommonEnum";
 
 const WithLoader = withLoader(Loader);
@@ -39,7 +39,7 @@ const PatientList = () => {
                 }
                 {!loading &&
                 <Fragment>
-                    <table className="table table-zebra table-bordered w-full">
+                    <table className="table table-zebra table-bordered table-fixed w-full">
                         {/* head */}
                         <thead>
                             <tr>
@@ -60,9 +60,16 @@ const PatientList = () => {
                                         <td>{item.gender}</td>
                                         <td>{item.phone}</td>
                                         <td>{item.address.address1 + ", " + item.address.city + ", " + item.address.country + ", " + item.address.pincode}</td>
-                                        <td key={item.id} className="text-center">
+                                        <td key={item.id} className="flex justify-center items-center text-center">
                                             <React.Fragment>
-                                                <PatientDeleteItem Id={item.id} />
+                                                    <Link className="pr-2" key={item.id} 
+                                                    to={generatePath(Enums.Patient_Enum.Patient_View, { id: item.id.toString() })}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                        </svg>
+                                                    </Link>
+                                                    <PatientDeleteItem Id={item.id} />
                                             </React.Fragment>
                                         </td>
                                     </tr>

@@ -40,6 +40,12 @@ export async function GetPatientData(): Promise<PatientData[]> {
   return response.data;
 }
 
+// Get Patient and its Address
+export async function GetPatientDetail(id : string): Promise<PatientData> {
+  const response: AxiosResponse<PatientData> = await apiClient.get('/patients/' + id);
+  return response.data;
+}
+
 // Delete Patient
 export async function DeletePatient(id : number): Promise<PatientData> {
   const response: AxiosResponse<PatientData> = await apiClient.delete('/patients/DeletePatient/' + id);
