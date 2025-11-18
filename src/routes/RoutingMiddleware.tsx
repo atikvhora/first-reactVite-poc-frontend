@@ -21,7 +21,7 @@ export const RoutingMiddleware : React.FC = () => {
                         <Route path={Enums.Patient_Enum.Patient_Address_Add} element={<Address />}></Route>
                         <Route path={Enums.Patient_Enum.Patient_List} element={<PatientList />}></Route>
                         <Route path={Enums.Common_Routes.home} element={<Dashboard />}></Route>
-                        <Route path={Enums.Patient_Enum.Patient_View} element={<ViewPatient id={0} />}></Route>
+                        <Route path={Enums.Patient_Enum.Patient_View} element={<ViewPatient />}></Route>
                     </Routes>
                 {/* <Footer /> */}
             </Applayout>
