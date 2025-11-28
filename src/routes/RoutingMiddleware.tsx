@@ -16,7 +16,7 @@ export const RoutingMiddleware : React.FC = () => {
                 {/* <AppHeader /> */}
                 {/* <SubHeader /> */}
                     <Routes>
-                        <Route path="/" element={<PatientList />}></Route>
+                        <Route path="/" element={<Dashboard />}></Route>
                         <Route path={Enums.Patient_Enum.Patient_Add} element={<Patient />}></Route>
                         <Route path={Enums.Patient_Enum.Patient_Address_Add} element={<Address />}></Route>
                         <Route path={Enums.Patient_Enum.Patient_List} element={<PatientList />}></Route>

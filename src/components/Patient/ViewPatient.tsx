@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react"
 import { GetPatientDetail } from "../../services/PatientService";
 import { useParams } from "react-router-dom";
 import Loader from "../Common/Loader/Loader";
+import { OTELMetricsFPS } from "../../otel/OTELMetricsFPS";
 
 export default function ViewPatient() {
     const [patientData, setPatientData] = useState(null)
@@ -21,6 +22,7 @@ export default function ViewPatient() {
         }).finally (() => {
             setLoading(false);
         });
+        OTELMetricsFPS();
     }, []);
 
     console.log("patientdata",params ,patientData);

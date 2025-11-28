@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css';
 import { BrowserRouter } from "react-router-dom";
 import { RoutingMiddleware } from './routes/RoutingMiddleware.tsx';
-
+// setupTelemetry();
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
       <BrowserRouter>

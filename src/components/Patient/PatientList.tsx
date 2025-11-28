@@ -6,22 +6,41 @@ import Loader from "../Common/Loader/Loader";
 import PatientDeleteItem from "./PatientDeleteItem";
 import { generatePath, Link } from "react-router-dom";
 import Enums from "../CommonEnum";
+import { trace } from "@opentelemetry/api";
 
 const WithLoader = withLoader(Loader);
+const tracer = trace.getTracer('frontend-patient-list');
 
 const PatientList = () => {
     const [loading, setLoading] = React.useState(true)
     const [patientData, setPatientList] = useState<PatientData[]>([]);
     useEffect(() => {
+        // const span = tracer.startSpan('Start to get Patient list');
+        // try {
         getPatientData();
+        // } finally {
+        //     span.end();
+        // }
     }, []);
 
 
     const getPatientData = () => {
-        GetPatientData().then((data) => 
-        {
-            setPatientList(data);
-            setLoading(false);
+        return tracer.startActiveSpan('get_patient_list', async (span) => {
+            try {
+                GetPatientData().then((data) => 
+                {
+                    span.addEvent('patient_data_received', { size: JSON.stringify(data).length });
+                    setPatientList(data);
+                    setLoading(false);
+                });
+            } 
+            catch (err: any) {
+                span.recordException(err);
+                span.setStatus({ code: 2, message: err.message ?? 'error' }); // 2 = ERROR
+                throw err;
+            } finally {
+                span.end();
+            }
         });
     }
     console.log("patiendata", patientData);
@@ -59,14 +78,16 @@ const PatientList = () => {
                                         <td>{item.email}</td>
                                         <td>{item.gender}</td>
                                         <td>{item.phone}</td>
-                                        <td>{item.address.address1 + ", " + item.address.city + ", " + item.address.country + ", " + item.address.pincode}</td>
+                                        {item.address &&
+                                            <td>{item.address.address1 + ", " + item.address.city + ", " + item.address.country + ", " + item.address.pincode}</td>
+                                        }
                                         <td key={item.id} className="flex justify-center items-center text-center">
                                             <React.Fragment>
                                                     <Link className="pr-2" key={item.id} 
                                                     to={generatePath(Enums.Patient_Enum.Patient_View, { id: item.id.toString() })}>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                         </svg>
                                                     </Link>
                                                     <PatientDeleteItem Id={item.id} />

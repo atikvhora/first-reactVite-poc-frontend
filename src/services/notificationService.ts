@@ -16,7 +16,7 @@ export interface PushNotification {
 }
 
 const apiClient = axios.create({
-  baseURL: 'https://jsw1rv1g-3000.inc1.devtunnels.ms/',
+  baseURL: "http://localhost:5000",
   headers: {
     'Content-Type': 'application/json',
   },
