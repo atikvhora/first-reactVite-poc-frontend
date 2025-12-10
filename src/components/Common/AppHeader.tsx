@@ -3,7 +3,7 @@ import { subscribeUser } from "../notification/PushNotificationManager";
 
 const AppHeader = () => {
     useEffect(() => {
-        subscribeUser();
+        // subscribeUser();
     }, []);
 
     return (

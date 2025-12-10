@@ -3,6 +3,7 @@ import { GetPatientDetail } from "../../services/PatientService";
 import { useParams } from "react-router-dom";
 import Loader from "../Common/Loader/Loader";
 import { OTELMetricsFPS } from "../../otel/OTELMetricsFPS";
+import axios from "axios";
 
 export default function ViewPatient() {
     const [patientData, setPatientData] = useState(null)
@@ -22,7 +23,11 @@ export default function ViewPatient() {
         }).finally (() => {
             setLoading(false);
         });
-        OTELMetricsFPS();
+        const perms = axios.get(`http://localhost:5173/cerbos/${params.id}`);
+        perms.then(res => 
+            console.log("perms",res)
+        );
+        // OTELMetricsFPS();
     }, []);
 
     console.log("patientdata",params ,patientData);

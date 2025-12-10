@@ -5,7 +5,7 @@ import Enums from "../CommonEnum";
 
 export const SideMenu = () => {
     useEffect(() => {
-        subscribeUser();
+        // subscribeUser();
     }, []);
 
     return (

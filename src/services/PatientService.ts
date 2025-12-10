@@ -21,7 +21,6 @@ export interface AddressData {
   country?: string;
 }
 
-console.log("create", import.meta.env.PORT_API_URL)
 const apiClient = axios.create({
   baseURL: "http://localhost:5000",
   headers: {
@@ -38,6 +37,7 @@ export async function AddPatient(patientData = {}): Promise<PatientData> {
 // Get Patient and its Address
 export async function GetPatientData(): Promise<PatientData[]> {
   const response: AxiosResponse<PatientData[]> = await apiClient.get('/patients/GetAllPatient');
+  console.log("response data", response.data);
   return response.data;
 }
 
